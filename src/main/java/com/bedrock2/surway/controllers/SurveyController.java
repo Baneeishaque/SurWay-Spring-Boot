@@ -39,25 +39,23 @@ public class SurveyController {
 	@Autowired
 	private UserRepository userRepository;
 
-
 	@GetMapping("/createnew")
 	public String loadCreatePage() {
 		return "/views/createnew.jsp";
 	}
 
-
 	@PostMapping("/create")
 	public String createSurvey(HttpServletRequest request, Model m) {
-		String title= (String) request.getParameter("title");
-		String description= (String) request.getParameter("description");
+		String title = (String) request.getParameter("title");
+		String description = (String) request.getParameter("description");
 		int authorId = (int) Integer.parseInt(request.getParameter("authorId"));
 		Survey s = new Survey();
 		s.setTitle(title);
 		s.setDescription(description);
 		s.setAuthorId(authorId);
 		surveyRepository.save(s);
-		m.addAttribute("survey",s);
-		m.addAttribute("qNum",1);
+		m.addAttribute("survey", s);
+		m.addAttribute("qNum", 1);
 		return "/views/createsurvey.jsp";
 	}
 
@@ -68,90 +66,75 @@ public class SurveyController {
 		return "/views/survey_deleted.jsp";
 	}
 
-
 	@GetMapping("/view")
-	public String getSurvey(@RequestParam("id")int surveyId, Model m) {
+	public String getSurvey(@RequestParam("id") int surveyId, Model m) {
 
 		Survey survey = surveyRepository.findById(surveyId).get();
-		m.addAttribute("surveyInfo",survey);
+		m.addAttribute("surveyInfo", survey);
 
 		Question[] questions = questionRepository.findBySurveyId(surveyId);
-		m.addAttribute("questions",questions);
+		m.addAttribute("questions", questions);
 
 		return "/views/viewsurvey.jsp";
 	}
 
-
 	@PostMapping("/edit")
-	public String loadEditPage(@RequestParam("surveyId")int surveyId,@RequestParam("questionId")int questionId,Model m) {
+	public String loadEditPage(@RequestParam("surveyId") int surveyId, @RequestParam("questionId") int questionId,
+			Model m) {
 		Survey survey = surveyRepository.findById(surveyId).get();
-		m.addAttribute("surveyInfo",survey);
+		m.addAttribute("surveyInfo", survey);
 
 		Question question = questionRepository.findById(questionId).get();
-		m.addAttribute("question",question);
+		m.addAttribute("question", question);
 		return "/views/editsurvey.jsp";
 	}
 
-
 	@PostMapping("/publish")
-	public String publishSurvey(@RequestParam("surveyId") int surveyId,Model m) {
-		m.addAttribute("surveyId",surveyId);
+	public String publishSurvey(@RequestParam("surveyId") int surveyId, Model m) {
+		m.addAttribute("surveyId", surveyId);
 		Survey survey = surveyRepository.findById(surveyId).get();
 		survey.setPublished(true);
 		surveyRepository.save(survey);
 		return "/views/survey_published.jsp";
 	}
 
-
-
 	@PostMapping("/submit")
-	public String submitSurvey(
-			@RequestParam("surveyId")int surveyId,
-			@RequestParam("userId")int userId,
-			Model m) {
+	public String submitSurvey(@RequestParam("surveyId") int surveyId, @RequestParam("userId") int userId, Model m) {
 		User user = userRepository.findById(userId).get();
 		Survey survey = surveyRepository.findById(surveyId).get();
-		List<Response> responses =responseRepository.findByUserIdAndSurveyId(userId,surveyId);
-		
-		
-		
+		List<Response> responses = responseRepository.findByUserIdAndSurveyId(userId, surveyId);
+
 		switch (user.getGender()) {
 		case MALE:
-			survey.setMaleCount(survey.getMaleCount()+1);
+			survey.setMaleCount(survey.getMaleCount() + 1);
 			break;
 		case FEMALE:
-			survey.setFemaleCount(survey.getFemaleCount()+1);
+			survey.setFemaleCount(survey.getFemaleCount() + 1);
 		case OTHER:
-			survey.setOtherCount(survey.getOtherCount()+1);
+			survey.setOtherCount(survey.getOtherCount() + 1);
 		default:
 			break;
 		}
-		
-		for(Response resp: responses) {
+
+		for (Response resp : responses) {
 			Question question = questionRepository.findById(resp.getQuestionId()).get();
-			int type=question.getType();
-			if(type==2) {
-				for(String selectedOption:resp.getOptionNo().split(",")) {
+			int type = question.getType();
+			if (type == 2) {
+				for (String selectedOption : resp.getOptionNo().split(",")) {
 					question.incrementOptionCount(Integer.parseInt(selectedOption));
 				}
-			}
-			else if(type==3) {
+			} else if (type == 3) {
 				String current = question.getOptionCount();
-				current=current+resp.getOptionNo();
+				current = current + resp.getOptionNo();
 				question.setOptionCount(current);
-			}
-			else if(type==1||type==4) {
+			} else if (type == 1 || type == 4) {
 				question.incrementOptionCount(Integer.parseInt(resp.getOptionNo()));
 			}
-			
+
 			questionRepository.save(question);
 		}
-		
-		
-		
+
 		return "/views/survey_completed";
 	}
-
-
 
 }

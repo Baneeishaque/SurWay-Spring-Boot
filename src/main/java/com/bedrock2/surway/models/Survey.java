@@ -7,27 +7,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="survey")
-public class Survey{
-	
+@Table(name = "survey")
+public class Survey {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Id;
 
 	int authorId;
 
-	String title,description;
-    int questionCount;
-    
-    int maleCount,femaleCount,otherCount;
+	String title, description;
+	int questionCount;
 
-    boolean published=false;
-    
-    
-    
+	int maleCount, femaleCount, otherCount;
 
-    
-    public boolean isPublished() {
+	boolean published = false;
+
+	public boolean isPublished() {
 		return published;
 	}
 
@@ -44,72 +40,69 @@ public class Survey{
 	}
 
 	public Survey() {
-    	
-    }
 
-    public Survey(String title, String description, int questionCount) {
-        this.title = title;
-        this.description = description;
-        this.questionCount = questionCount;
-    }
-    
-    public int getId() {
+	}
+
+	public Survey(String title, String description, int questionCount) {
+		this.title = title;
+		this.description = description;
+		this.questionCount = questionCount;
+	}
+
+	public int getId() {
 		return Id;
 	}
-    
-    public void setId(int Id) {
-        this.Id = Id;
-    }
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(int Id) {
+		this.Id = Id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public int getQuestionCount() {
-        return questionCount;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setQuestionCount(int questionCount) {
-        this.questionCount = questionCount;
-    }
+	public int getQuestionCount() {
+		return questionCount;
+	}
 
+	public void setQuestionCount(int questionCount) {
+		this.questionCount = questionCount;
+	}
 
-    public int getMaleCount() {
-        return maleCount;
-    }
+	public int getMaleCount() {
+		return maleCount;
+	}
 
-    public void setMaleCount(int maleCount) {
-        this.maleCount = maleCount;
-    }
+	public void setMaleCount(int maleCount) {
+		this.maleCount = maleCount;
+	}
 
-    public int getFemaleCount() {
-        return femaleCount;
-    }
+	public int getFemaleCount() {
+		return femaleCount;
+	}
 
-    public void setFemaleCount(int femaleCount) {
-        this.femaleCount = femaleCount;
-    }
+	public void setFemaleCount(int femaleCount) {
+		this.femaleCount = femaleCount;
+	}
 
-    public int getOtherCount() {
-        return otherCount;
-    }
+	public int getOtherCount() {
+		return otherCount;
+	}
 
-    public void setOtherCount(int otherCount) {
-        this.otherCount = otherCount;
-    }
+	public void setOtherCount(int otherCount) {
+		this.otherCount = otherCount;
+	}
 
-    
-    
 }

@@ -5,29 +5,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+
 @Entity
-@Table(name="question")
+@Table(name = "question")
 public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int Id;
-	
+
 	int questionNumber;
-	
+
 	String questionString;
-	
+
 	int type;
-	
+
 	int surveyId;
-	
+
 	Boolean mandatory;
-	
+
 	String options;
 
-	String optionCount="0,0,0,0,0";
+	String optionCount = "0,0,0,0,0";
 
-
-		
 	public int getQuestionNumber() {
 		return questionNumber;
 	}
@@ -38,10 +37,10 @@ public class Question {
 
 	public int getTotalResponses() {
 		String[] counts = optionCount.split(",");
-		int total=0;
-		for(String optioncount:counts) {
-			int count=Integer.parseInt(optioncount);
-			total+=count;
+		int total = 0;
+		for (String optioncount : counts) {
+			int count = Integer.parseInt(optioncount);
+			total += count;
 		}
 		return total;
 	}
@@ -57,7 +56,7 @@ public class Question {
 	public String[] getOptions() {
 		return options.split(",");
 	}
-	
+
 	public String getOptionsString() {
 		return options;
 	}
@@ -73,8 +72,6 @@ public class Question {
 	public void setId(int id) {
 		Id = id;
 	}
-
-	
 
 	public int getType() {
 		return type;
@@ -100,17 +97,16 @@ public class Question {
 		this.optionCount = optionCount;
 	}
 
-	//method to parse string and get actual option count
-	public int getIntOptionCount(int optionNumber){
+	// method to parse string and get actual option count
+	public int getIntOptionCount(int optionNumber) {
 		String[] counts = optionCount.split(",");
 		return Integer.parseInt(counts[optionNumber]);
 	}
 
-
-	public void incrementOptionCount(int optionNumber){
+	public void incrementOptionCount(int optionNumber) {
 		String[] counts = optionCount.split(",");
 		int currentCount = Integer.parseInt(counts[optionNumber]);
-		counts[optionNumber]=Integer.toString(currentCount+1);
+		counts[optionNumber] = Integer.toString(currentCount + 1);
 		optionCount = String.join(",", counts);
 	}
 
@@ -122,7 +118,4 @@ public class Question {
 		this.questionString = questionString;
 	}
 
-	
-	
-	
 }

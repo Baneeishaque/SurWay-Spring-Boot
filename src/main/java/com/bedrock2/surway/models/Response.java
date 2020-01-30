@@ -6,54 +6,49 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="response")
-public class Response{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+@Table(name = "response")
+public class Response {
 
-    
-    int userId;
-    int questionId;
-    String optionNo;
-    int surveyId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	int id;
 
-    public int getUserId() {
-        return userId;
-    }
+	int userId;
+	int questionId;
+	String optionNo;
+	int surveyId;
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public int getQuestionId() {
-        return questionId;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
+	public int getQuestionId() {
+		return questionId;
+	}
 
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
 
-    public int getSurveyId() {
-        return surveyId;
-    }
+	public int getSurveyId() {
+		return surveyId;
+	}
 
-    public void setSurveyId(int surveyId) {
-        this.surveyId = surveyId;
-    }
+	public void setSurveyId(int surveyId) {
+		this.surveyId = surveyId;
+	}
 
-    public String getOptionNo() {
-        return optionNo;
-    }
+	public String getOptionNo() {
+		return optionNo;
+	}
 
-    public void setOptionNo(String optionNo) {
-        this.optionNo = optionNo;
-    }
+	public void setOptionNo(String optionNo) {
+		this.optionNo = optionNo;
+	}
 
-
-    
 }

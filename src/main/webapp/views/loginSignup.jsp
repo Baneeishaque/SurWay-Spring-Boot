@@ -12,31 +12,36 @@
 </head>
 <body>
 	<div class="loginmainbox">
-		<form  name="loginform" action="/login" onsubmit="return loginVerification()">
+		<form name="loginform" action="/login"
+			onsubmit="return loginVerification()">
 			<p class="login">
 				Hello there,<br>Welcome Back
 			</p>
 			<div class="mailbox">
 				<div class="flex-container">
 
-					<img src="images/mailid.png"> <input type="email" name="email" placeholder="email id">
+					<img src="images/mailid.png"> <input type="email"
+						name="email" placeholder="email id">
 				</div>
 			</div>
 			<div class="passwordbox">
 				<div class="flex-container">
-					<img src="images/password.png"> <input type="password" name="pwd" placeholder="password">
+					<img src="images/password.png"> <input type="password"
+						name="pwd" placeholder="password">
 				</div>
 			</div>
 			<div class="loginbuttonbox">
 				<div class="flex-container">
-					<img id="btn1" src="images/login.png"> <button class="button" type="submit">Login</button>
+					<img id="btn1" src="images/login.png">
+					<button class="button" type="submit">Login</button>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="verticalline"></div>
 	<div class="signupmainbox">
-		<form name="signupform" action="/login" onsubmit="return signupVerification()">
+		<form name="signupform" action="/login"
+			onsubmit="return signupVerification()">
 			<p class="porange">Get On Board</p>
 			<div class="username">
 				<div class="flex-container">
