@@ -18,7 +18,7 @@
 				adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 				dolore magna aliqua.</p>
 			<button class="button">
-				<a href="/Dashboard/20">Get Started</a>
+				<a href="/login">Get Started</a>
 			</button>
 		</div>
 
