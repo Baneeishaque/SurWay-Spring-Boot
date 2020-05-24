@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SurWayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false">
-    <module name="SurWay" />
+    <module name="surway" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.bedrock2.surway.SurWayApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">
